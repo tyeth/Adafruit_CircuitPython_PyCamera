@@ -105,6 +105,8 @@ while True:
                     pycam.keys_debounce()
                     while not pycam.shutter.pressed and timeleft > 0:
                         timeleft -= 1
+                        # NB: note that this is really bad! it should only update when needed,
+                        # or it will take longer than expected updating with the same image
                         pycam.display_message(msg % (timeleft//20), color=0xFFFFFF, scale=2)
                         time.sleep(0.05)
                         pycam.keys_debounce()
